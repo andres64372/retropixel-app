@@ -1,6 +1,6 @@
 import React from 'react';
 import {useState} from 'react';
-import {useHistory} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 import Cookies from 'universal-cookie';
 import config from '../components/settings.json'
 
@@ -8,7 +8,7 @@ const cookies = new Cookies();
 const host = config.SERVER_URL; 
 
 function Login(){
-    const history = useHistory();
+    const history = useNavigate();
     const [Disabled,SetDisabled] = useState(true)
     const [Invalid,SetInvalid] = useState(false)
     const [Loading,SetLoading] = useState(false)
@@ -41,7 +41,7 @@ function Login(){
           if(data.status){
               cookies.set('token',data.token)
               cookies.set('refresh',data.refresh,{maxAge:3600*24*365*100})
-              history.push('/index');
+              history('/index');
           }else{
               SetInvalid(true);
           }

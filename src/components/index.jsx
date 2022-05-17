@@ -1,17 +1,18 @@
 import React from 'react';
 import {useEffect,useState} from 'react';
-import {useHistory} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 import Picker from '../components/picker.jsx';
 import socketIOClient from "socket.io-client";
-import offline from '../Offline.svg'
+
 import Cookies from 'universal-cookie';
 import config from '../components/settings.json'
+import offline from '../offline.png'
 
 const cookies = new Cookies();
 const host = config.SERVER_URL; 
 
 function Index(){
-    const history = useHistory();
+    const history = useNavigate();
     const [Device,SetDevice] = useState([])
     const [Deviceid,SetDeviceid] = useState([])
     const [Offline,SetOffline] = useState(false)
@@ -19,7 +20,7 @@ function Index(){
     function logout(){
         cookies.remove('token');
         cookies.remove('refresh');
-        history.push('/');
+        history('/');
     }
 
     function manage(payload){

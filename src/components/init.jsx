@@ -1,15 +1,15 @@
 import React from 'react';
 import {useState,useEffect} from 'react';
-import {useHistory} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 import Cookies from 'universal-cookie';
-import offline from '../Offline.svg'
 import config from '../components/settings.json'
+import offline from '../offline.png'
 
 const cookies = new Cookies();
 const host = config.SERVER_URL; 
 
 function Init(){
-    const history = useHistory();
+    const history = useNavigate();
     const [Offline,SetOffline] = useState(false)
 
     useEffect(() => {
@@ -19,13 +19,13 @@ function Init(){
                 .then(response => response.json())
                 .then(data => {
                     cookies.set('token',data.token)
-                    history.push('/index');
+                    history('/index');
                 })
                 .catch(err => {
                   SetOffline(true)
                 })
         }else{
-          history.push('/login');
+          history('/login');
         }
     },[history])
 

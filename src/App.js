@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route
 } from "react-router-dom";
 import { Toaster } from 'react-hot-toast';
@@ -15,20 +15,12 @@ function App() {
   return(
     <Router>
       <Toaster position="top-left"/>
-      <Switch>
-        <Route path="/index">
-          <Index/>
-        </Route>
-        <Route path="/register">
-          <Register/>
-        </Route>
-        <Route path="/login">
-          <Login/>
-        </Route>
-        <Route path="/">
-          <Init/>
-        </Route>
-      </Switch>
+      <Routes>
+        <Route path="/index" element={<Index/>}/>
+        <Route path="/register" element={<Register/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/" element={<Init/>}/> 
+      </Routes>
     </Router>    
   );
 }
