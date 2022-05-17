@@ -2,6 +2,7 @@
   "name": "retropixel",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://retropixel.tk",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
@@ -12,6 +13,7 @@
     "@testing-library/user-event": "^13.5.0",
     "autoprefixer": "10.4.7",
     "bootswatch": "^5.1.3",
+    "gh-pages": "^4.0.0",
     "postcss-loader": "^6.2.1",
     "react": "^18.1.0",
     "react-bootstrap": "^2.4.0",
@@ -27,6 +29,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
