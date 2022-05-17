@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-//import 'bootswatch/dist/superhero/bootstrap.css';
+import 'bootswatch/dist/superhero/bootstrap.css';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
