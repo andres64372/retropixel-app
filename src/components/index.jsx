@@ -62,7 +62,7 @@ function Index(){
     }
     return (
     <div style={{alignSelf: 'flex-center'}} className="container mt-3">
-        <button className="btn btn-secondary rounded-pill" onClick={logout}>Salir</button>
+        <button className="btn btn-info rounded-pill" onClick={logout}>Salir</button>
         { Deviceid.length > 0 
         ? <div className="row">
         {Deviceid.map(device =>(

@@ -76,12 +76,12 @@ function Login(){
               </div>
             </div>
             <div className="justify-content-right" style={{textAlign: 'right'}}>
-              <button type="submit" className="btn btn-primary rounded-pill" disabled={Disabled}>Ingresar</button>
+              <button type="submit" className="btn btn-info rounded-pill" disabled={Disabled}>Ingresar</button>
             </div>
             <p style={{color: 'red'}} hidden={!Invalid}>Datos erroneos</p>
           </form>
           <div className="row align-items-center my-5"> 
-            <div className="alert alert-primary" role="alert">
+            <div className="alert alert-info" role="alert">
               Al ingresar autorizas el uso de cookies
             </div>
           </div>

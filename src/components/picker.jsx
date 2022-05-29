@@ -71,7 +71,7 @@ function Picker(props){
     }
     return(
         <div className="container">
-            <div className="card rounded-pill p-3 my-4">
+            <div className="card p-3 my-4" style={{borderRadius: '80px', borderColor: '#ffffff', backgroundColor: '#c2c2c2'}}>
                 <div className="row">
                     <div className="col-5 col-md-3 col-lg-4">
                         <div style={{boxShadow: On?`0 0 30px hsl(${init[0]},${init[1]}%,${init[2]}%)`:'none',backgroundColor:'white'}} className="bulb"> 
@@ -80,18 +80,19 @@ function Picker(props){
                     </div>
                     <div className="col-7 col-md-9 col-lg-8">
                         <Switch color="primary" checked={On} onChange={checked} disabled={!props.online}/>
-                        <p>{props.name}</p>
+                        <p className="text-white">{props.name}</p>
                         <button style={{color:"white",border:"1px solid white",backgroundColor:"transparent"}} onClick={() => setOpen(!open)} className="btn rounded-pill shadow-none"><IoMdColorPalette />Color</button>
                     </div>
                 </div>
+                <Collapse in={open}>
+                    <div className="row justify-content-center my-5">
+                        <label htmlFor="sat" className="form-label text-white">Saturación</label>
+                        <Slider value={White} sx={{color:"white",width:"80%"}} onChange={(evt) => {lum.current=evt.target.value;setWhite(evt.target.value);changeColor()}} onChangeCommitted={color} min={0} max={100} />
+                        <div style={{width:'fit-content'}}><ColorPicker step={10} disabled={!props.online} variant="persistent" onInput={(evt) => {hue.current = 10*parseInt(evt/10);changeColor()}} onChange={color} hue={Hue} luminosity={Lum} saturation={Sat}/></div>
+                    </div>
+                </Collapse>
             </div>
-            <Collapse in={open}>
-                <div className="row justify-content-center mb-5">
-                    <label htmlFor="sat" className="form-label">Saturation</label>
-                    <Slider value={White} sx={{color:"white",width:"80%"}} onChange={(evt) => {lum.current=evt.target.value;setWhite(evt.target.value);changeColor()}} onChangeCommitted={color} min={0} max={100} />
-                    <div style={{width:'fit-content'}}><ColorPicker step={10} disabled={!props.online} variant="persistent" onInput={(evt) => {hue.current = 10*parseInt(evt/10);changeColor()}} onChange={color} hue={Hue} luminosity={Lum} saturation={Sat}/></div>
-                </div>
-            </Collapse>
+            
         </div>
     );
 }
