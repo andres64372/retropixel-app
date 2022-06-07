@@ -3,6 +3,7 @@ import {useState} from 'react';
 import {useNavigate} from "react-router-dom"
 import Cookies from 'universal-cookie';
 import config from '../components/settings.json'
+import logo from '../logo.png'
 
 const cookies = new Cookies();
 const host = config.SERVER_URL; 
@@ -51,12 +52,12 @@ function Login(){
     return(
     <div className="container">
         <div className="row justify-content-center" style={{textAlign: 'center'}}>
-          <img alt="" src="https://i.ibb.co/yR7KjSK/Logo.png" className="rounded-circle my-5" style={{width: '200px'}} />
+          <img alt="" src={logo} className="rounded-circle my-5" style={{width: '200px'}} />
         </div>
         <div className="row d-flex justify-content-center mt-5">
           {Loading
           ?
-          <div className="spinner-grow" role="status">
+          <div className="spinner-grow text-info" role="status">
             <span className="sr-only"></span>
           </div>
           :

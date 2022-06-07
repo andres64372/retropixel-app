@@ -29,9 +29,15 @@ function Index(){
 
     useEffect(()=>{
         const client = socketIOClient(host);
-        client.on('connect_error', err => {
-            SetOffline(true)
+        window.addEventListener("offline", () => {
+            SetOffline(true);
         });
+        window.addEventListener("online", () => {
+            SetOffline(false);
+        });
+        // client.on('connect_error', err => {
+        //     SetOffline(true)
+        // });
         client.on('connect', ()=>{
             fetch(`${host}devices`,{
                 headers: {
@@ -46,18 +52,27 @@ function Index(){
             }  
             SetDevice(response.states)
             SetDeviceid(response.list)
-            SetOffline(false)
+            // SetOffline(false)
             })
-            .catch(error => {
-                SetOffline(true)
-            });
+            // .catch(error => {
+            //     SetOffline(true)
+            // });
         })
     },[])
     if(Offline){
         return(
-            <div style={{alignSelf: 'flex-center'}} className="container d-flex justify-content-center">
-                <img style={{width:"50%", height:"50%"}} alt="" src={offline}></img>
+            <div className="container">
+                <div className="row align-items-center" style={{height: '100vh'}}>
+                    <div className="col-12 col-md-6 container d-flex justify-content-center">
+                        <img style={{width:"90%"}} alt="" src={offline}></img>
+                    </div>
+                </div>
             </div>
+            // <span className="align-middle">
+            //     <div className="container d-flex justify-content-center">
+            //         <img style={{width:"50%", height:"50%"}} alt="" src={offline}></img>
+            //     </div>
+            // </span>
         )
     }
     return (
@@ -72,7 +87,7 @@ function Index(){
         ))}
         </div>
         : <div className="row d-flex justify-content-center mt-5">
-            <div className="spinner-grow" role="status">
+            <div className="spinner-grow text-info" role="status">
                 <span className="sr-only"></span>
             </div>
         </div>
