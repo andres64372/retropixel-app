@@ -68,11 +68,6 @@ function Index(){
                     </div>
                 </div>
             </div>
-            // <span className="align-middle">
-            //     <div className="container d-flex justify-content-center">
-            //         <img style={{width:"50%", height:"50%"}} alt="" src={offline}></img>
-            //     </div>
-            // </span>
         )
     }
     return (
