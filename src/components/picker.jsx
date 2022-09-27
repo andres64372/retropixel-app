@@ -36,6 +36,7 @@ function Picker(props){
         const payload = evt.target.checked ? 'true':'false';
         SetOn(evt.target.checked)
         fetch(`${props.host}set?topic=${topic}&payload=${payload}`,{
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${cookies.get('token')}`
