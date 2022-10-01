@@ -30,7 +30,7 @@ function Register(){
     function submit(e){
       SetLoading(true)
       e.preventDefault();
-      fetch(`${host}register`,{
+      fetch(`${host}/register`,{
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'

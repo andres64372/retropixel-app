@@ -9,7 +9,7 @@ import config from '../components/settings.json'
 import offline from '../offline.png'
 
 const cookies = new Cookies();
-const host = config.SERVER_URL; 
+const host = config.SERVER_URL;
 
 function Index(){
     const history = useNavigate();
@@ -35,7 +35,7 @@ function Index(){
         window.addEventListener("online", () => {
             SetOffline(false);
         });
-        fetch(`${host}devices`,{
+        fetch(`${host}/devices`,{
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${cookies.get('token')}`
@@ -68,15 +68,16 @@ function Index(){
     return (
     <div style={{alignSelf: 'flex-center'}} className="container mt-3">
         <button className="btn btn-info rounded-pill" onClick={logout}>Salir</button>
-        { Deviceid.length > 0 
-        ? <div className="row">
+        { Deviceid.length > 0 ?
+        <div className="row">
         {Deviceid.map(device =>(
             <div className="col-12 col-lg-6" key={device}>
                 <Picker host={host} id={device} name={Device[device].name} check={Device[device].OnOff} color={Device[device].Color} online={Device[device].Online}/>
             </div>
         ))}
         </div>
-        : <div className="row d-flex justify-content-center mt-5">
+        : 
+        <div className="row d-flex justify-content-center align-items-center" style={{height: '100vh'}}>
             <div className="spinner-grow text-info" role="status">
                 <span className="sr-only"></span>
             </div>

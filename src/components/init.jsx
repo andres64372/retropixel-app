@@ -15,15 +15,18 @@ function Init(){
     useEffect(() => {
         if(cookies.get('refresh')){
             const token = cookies.get('refresh');
-            fetch(`${host}refresh?token=${token}`,{method:'POST'})
-                .then(response => response.json())
-                .then(data => {
-                    cookies.set('token',data.token)
-                    history('/index');
-                })
-                .catch(err => {
-                  SetOffline(true)
-                })
+            fetch(`${host}/refresh`,{
+              method:'POST',
+              body: JSON.stringify({token: token})
+            })
+            .then(response => response.json())
+            .then(data => {
+                cookies.set('token',data.token)
+                history('/index');
+            })
+            .catch(_ => {
+              SetOffline(true)
+            })
         }else{
           history('/login');
         }
@@ -31,14 +34,14 @@ function Init(){
 
     return(
     <div className="container">
-        {Offline
-        ? <div style={{alignSelf: 'flex-center'}} className="container d-flex justify-content-center">
-              <img style={{width:"50%", height:"50%"}} alt="" src={offline}></img>
-          </div>
+        {Offline ?
+        <div style={{alignSelf: 'flex-center'}} className="container d-flex justify-content-center">
+            <img style={{width:"50%", height:"50%"}} alt="" src={offline}></img>
+        </div>
         :
-          <div style={{alignSelf: 'flex-center'}} className="container d-flex justify-content-center">
+        <div style={{alignSelf: 'flex-center'}} className="container d-flex justify-content-center">
               
-          </div>
+        </div>
         }
     </div>
     );

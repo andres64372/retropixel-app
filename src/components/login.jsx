@@ -30,7 +30,7 @@ function Login(){
     function submit(e){
       SetLoading(true)
       e.preventDefault();
-      fetch(`${host}login`,{
+      fetch(`${host}/login`,{
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'

@@ -35,8 +35,12 @@ function Picker(props){
         const topic = `${props.id}/OnOff`;
         const payload = evt.target.checked ? 'true':'false';
         SetOn(evt.target.checked)
-        fetch(`${props.host}set?topic=${topic}&payload=${payload}`,{
+        fetch(`${props.host}/set`,{
             method: 'POST',
+            body: JSON.stringify([{
+                topic: topic,
+                payload: payload
+            }]),
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${cookies.get('token')}`
@@ -62,8 +66,13 @@ function Picker(props){
         }
         const hex = rgb[0].toString(16) + rgb[1].toString(16) + rgb[2].toString(16)
         const topic = `${props.id}/Color`;
-        const payload = parseInt(hex,16);
-        fetch(`${props.host}set?topic=${topic}&payload=${payload}`,{
+        const payload = parseInt(hex,16).toString();
+        fetch(`${props.host}/set`,{
+            method: 'POST',
+            body: JSON.stringify([{
+                topic: topic,
+                payload: payload
+            }]),
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${cookies.get('token')}`
@@ -75,7 +84,7 @@ function Picker(props){
             <div className="card p-3 my-4" style={{borderRadius: '80px', borderColor: '#ffffff', backgroundColor: '#c2c2c2'}}>
                 <div className="row">
                     <div className="col-5 col-md-3 col-lg-4">
-                        <div style={{boxShadow: On?`0 0 30px hsl(${init[0]},${init[1]}%,${init[2]}%)`:'none',backgroundColor:'white'}} className="bulb"> 
+                        <div style={{boxShadow: On?`0 0 30px hsl(${Hue},${Sat}%,${Lum}%)`:'none',backgroundColor:'white'}} className="bulb"> 
                         <img style={{width:"70%", height:"70%"}} alt="" src={props.online?light:unreach}></img>
                         </div>
                     </div>
